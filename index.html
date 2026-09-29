@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17130f">
+  <meta name="description" content="游戏同盟《无量劫》盟主宝宝丨无极言行纪略。">
+  <title>无量劫大帝：宝宝丨无极传。</title>
+  <style>
+    :root {
+      --ink: #282018;
+      --ink-soft: #594838;
+      --paper: #d7c5a0;
+      --paper-light: #eadbb8;
+      --paper-deep: #bda579;
+      --gold: #a88039;
+      --gold-light: #d5b766;
+      --cinnabar: #862f25;
+      --night: #17130f;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(184, 143, 66, .16), transparent 26rem),
+        radial-gradient(circle at 88% 80%, rgba(134, 47, 37, .12), transparent 24rem),
+        linear-gradient(135deg, #0f0d0a 0%, #211a13 52%, #100e0b 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .16;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+      mix-blend-mode: screen;
+    }
+
+    .shell {
+      width: min(100% - 28px, 1040px);
+      margin: 0 auto;
+      padding: 28px 0 54px;
+    }
+
+    .chronicle {
+      position: relative;
+      min-height: calc(100vh - 82px);
+      padding: clamp(34px, 6vw, 76px) clamp(24px, 7vw, 92px) clamp(42px, 7vw, 84px);
+      border: 1px solid rgba(213, 183, 102, .48);
+      border-radius: 4px;
+      background:
+        linear-gradient(90deg, rgba(77, 50, 24, .13) 0 1px, transparent 1px 9.1%),
+        repeating-linear-gradient(0deg, rgba(77, 50, 24, .035) 0 1px, transparent 1px 6px),
+        linear-gradient(100deg, var(--paper-deep), var(--paper-light) 9%, #e3d0a8 50%, var(--paper-light) 91%, var(--paper-deep));
+      box-shadow:
+        0 32px 90px rgba(0, 0, 0, .56),
+        inset 0 0 70px rgba(70, 43, 17, .18);
+      isolation: isolate;
+      animation: reveal .9s cubic-bezier(.16, 1, .3, 1) both;
+    }
+
+    .chronicle::before,
+    .chronicle::after {
+      content: "";
+      position: absolute;
+      left: -9px;
+      right: -9px;
+      height: 16px;
+      z-index: 2;
+      border: 1px solid #6e5328;
+      background: linear-gradient(180deg, #8f6f34, #3e2b16 38%, #b2924f 55%, #513719);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .34);
+    }
+
+    .chronicle::before { top: -9px; }
+    .chronicle::after { bottom: -9px; }
+
+    .corner {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 64px;
+      height: 64px;
+      border-top: 1px solid rgba(105, 69, 29, .5);
+      border-right: 1px solid rgba(105, 69, 29, .5);
+    }
+
+    header {
+      position: relative;
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 44px);
+      align-items: start;
+      padding-bottom: clamp(28px, 5vw, 56px);
+      border-bottom: 1px solid rgba(76, 48, 22, .42);
+    }
+
+    .seal {
+      display: grid;
+      place-items: center;
+      width: 66px;
+      aspect-ratio: 1;
+      color: #e8c995;
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      writing-mode: vertical-rl;
+      border: 3px double #b76450;
+      background: var(--cinnabar);
+      box-shadow: inset 0 0 0 3px rgba(232, 201, 149, .16), 0 7px 14px rgba(80, 34, 24, .22);
+      transform: rotate(-2deg);
+      animation: sealIn .75s cubic-bezier(.34, 1.56, .64, 1) .28s both;
+    }
+
+    .eyebrow {
+      margin: 0 0 9px;
+      color: var(--cinnabar);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .38em;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      color: #241b13;
+      font-size: clamp(38px, 7.8vw, 78px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .25);
+      animation: rise .75s cubic-bezier(.16, 1, .3, 1) .12s both;
+    }
+
+    .subtitle {
+      margin: 20px 0 0;
+      color: var(--ink-soft);
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: clamp(16px, 2.5vw, 21px);
+      letter-spacing: .2em;
+      animation: rise .75s cubic-bezier(.16, 1, .3, 1) .24s both;
+    }
+
+    main { padding-top: clamp(34px, 6vw, 66px); }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 80px;
+      gap: clamp(24px, 5vw, 62px);
+      align-items: start;
+    }
+
+    .chapter-title {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      color: #33241a;
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: clamp(26px, 4vw, 39px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: .12em;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      border-left: 1px solid rgba(76, 48, 22, .28);
+      padding-left: 20px;
+    }
+
+    .prose {
+      grid-column: 1;
+      grid-row: 1;
+      max-width: 690px;
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 2.15;
+      letter-spacing: .07em;
+    }
+
+    .prose p {
+      margin: 0 0 1.35em;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .prose p:first-child::first-letter {
+      float: left;
+      margin: .06em .16em 0 0;
+      color: var(--cinnabar);
+      font-size: 3.35em;
+      font-weight: 800;
+      line-height: .85;
+    }
+
+    .proclamation {
+      position: relative;
+      margin: clamp(32px, 6vw, 58px) 0;
+      padding: 26px 28px 24px 34px;
+      border-left: 4px solid var(--cinnabar);
+      background: rgba(255, 247, 220, .3);
+      box-shadow: inset 0 0 28px rgba(93, 58, 25, .08);
+    }
+
+    .proclamation::before {
+      content: "盟诰";
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      padding: 3px 10px;
+      color: #f1d8a6;
+      font-size: 12px;
+      letter-spacing: .28em;
+      background: var(--cinnabar);
+    }
+
+    .proclamation p {
+      margin: 0;
+      color: #4b3929;
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.95;
+    }
+
+    .judgment {
+      margin-top: clamp(40px, 7vw, 72px);
+      padding-top: 28px;
+      border-top: 1px solid rgba(76, 48, 22, .32);
+    }
+
+    .judgment-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--cinnabar);
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .35em;
+    }
+
+    .judgment p {
+      margin: 0;
+      color: #4c3a2b;
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: clamp(16px, 2.2vw, 20px);
+      line-height: 2;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: clamp(58px, 9vw, 96px);
+      color: #6b5139;
+      font-family: "Kaiti SC", "STKaiti", serif;
+      font-size: clamp(19px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: .18em;
+    }
+
+    footer::before,
+    footer::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(122, 86, 44, .64));
+    }
+
+    footer::before { flex: 0 1 90px; }
+    footer::after {
+      flex: 1;
+      background: linear-gradient(90deg, rgba(122, 86, 44, .64), transparent);
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(18px) scale(.992); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes sealIn {
+      from { opacity: 0; transform: rotate(-10deg) scale(.72); }
+      to { opacity: 1; transform: rotate(-2deg) scale(1); }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 16px, 1040px); padding: 16px 0 32px; }
+      .chronicle { padding: 34px 22px 46px; }
+      .corner { top: 20px; right: 20px; width: 42px; height: 42px; }
+      header { grid-template-columns: 54px minmax(0, 1fr); gap: 14px; }
+      .seal { width: 50px; font-size: 14px; }
+      h1 { font-size: clamp(35px, 11.5vw, 58px); }
+      .subtitle { letter-spacing: .1em; }
+      .chapter { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .chapter-title {
+        grid-column: 1;
+        grid-row: 1;
+        writing-mode: horizontal-tb;
+        border-left: 0;
+        border-bottom: 1px solid rgba(76, 48, 22, .28);
+        padding: 0 0 14px;
+        letter-spacing: .12em;
+      }
+      .prose { grid-column: 1; grid-row: 2; line-height: 2; }
+      .proclamation { margin-inline: -4px; padding: 25px 20px 20px 24px; }
+      footer { gap: 10px; letter-spacing: .08em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <article class="chronicle" aria-labelledby="page-title">
+      <span class="corner" aria-hidden="true"></span>
+      <header>
+        <div class="seal" aria-label="无量劫印">无量劫印</div>
+        <div>
+          <p class="eyebrow">帝王列传 · 卷一</p>
+          <h1 id="page-title">无量劫大帝：<br>宝宝丨无极传。</h1>
+          <p class="subtitle">纪碧游宫一朝聚众立盟之始</p>
+        </div>
+      </header>
+
+      <main>
+        <section class="chapter" aria-labelledby="chapter-one">
+          <h2 class="chapter-title" id="chapter-one">一、无量劫之始</h2>
+
+          <div class="prose">
+            <p>九月二十七日，无极大帝始招四方之士，建碧游宫一甲新团之群，以为聚众议盟之所。其盟号曰《无量劫》。帝告众曰：凡在一甲有旧识之团者，皆可相联而来，共成此举。</p>
+
+            <p>帝之所图，不务虚声，先求二至五桌之众，以沉淀根基。时已有指挥及管理班底，故来者但尽游戏之乐，不必忧其庶务。其择团也，以活跃为先，以执行为重；众能同心奉令，而后可共谋远图。</p>
+
+            <aside class="proclamation" aria-label="群公告要旨">
+              <p>其制不设武勋军费，此为入盟之前提，不可不察。然为奖活跃、增游戏之体验，亦置若干福利。来团之人，须先知其约而后入，既入则同守之。</p>
+            </aside>
+
+            <p>又定碧游宫诸团，皆以“截丨”为前缀，以明旗号。团与同盟之后，有大佬主其事者，号“截丨通天道人”，众又称曹sir。于是名号既立，规制初陈，四方之士闻风而集，《无量劫》之业，自此肇始。</p>
+
+            <p>越二日，九月二十九日，盟众问曰：“君与将军有隙乎？何不引之入群？”无极答曰：“无隙。彼与低调典善，故不来耳。”众复问：“此事何由知之？”帝曰：“将军自言之。若非如此，我与低调典素不甚亲，安得知哉？”</p>
+
+            <div class="judgment">
+              <span class="judgment-label">太史公-通天面包大人曰</span>
+              <p>立盟之道，非徒聚人而已，必先明其约，定其制，然后众志可一。无极开群之初，直言无武勋军费，而以活跃、执行为衡；又备班底以安来者，知取信在先、成事在后。其后兴衰得失，尚俟来日书之。</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer aria-label="连载状态">未完待续....</footer>
+    </article>
+  </div>
+</body>
+</html>
